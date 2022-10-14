@@ -1,0 +1,39 @@
+<tr id="customer_<%= customer.id %>">
+	<td><label class="fields-show-view"><%= customer.id_emp if customer.id_emp.present? %></label></td>		
+	<td><label class="fields-show-view"><%= customer.group.name %></label></td>	
+	<td><label class="fields-show-view"><%= customer.razao %></label></td>
+
+		
+
+	
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Exibir', customer, remote: true,class: "btn btn-sm btn-default" %>
+		</label>	
+	</td>
+	<% if current_user.admin? %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Editar', edit_customer_path(customer), remote: true, :class => 'btn btn-sm btn-primary' %>
+				</label>
+		</td>
+<% if customer.active? %>		
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Inativar', switch_customer_path(customer.id,:active => false), remote: true, data: {confirm: "Inativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-switch' %>
+				</label>
+		</td>
+<% else %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Ativar', switch_customer_path(customer.id,:active => true), remote: true, data: {confirm: "Ativar Cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-success' %>
+				</label>
+		</td>
+<% end %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Excluir', customer, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{customer.razao} ?"}, :class => 'btn btn-sm btn-danger' %>
+				</label>
+		</td>
+	<% end %>
+</tr>

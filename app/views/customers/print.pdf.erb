@@ -1,0 +1,72 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag "application", media: "all" %>
+
+
+<h1>PDF</h1>
+
+<% if params[:decimo3].present? %>
+  <center><h1 class="section">Relatório 13º Ano <%= Time.now.utc.strftime("%Y") %></h1></center>
+<% else %>
+  <center><h1 class="section">Relatório Resumido de Clientes</h1></center>
+<% end %>
+  <style type="text/css">
+   table { page-break-inside:auto }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+
+</style>
+
+<table class="table table-bordered table-striped">
+<thead>
+    <tr>
+      <th class="th-field">Código</th>
+      <th class="th-field">Razão Social</th>      
+      <th class="th-field">CNPJ</th>
+      <th class="th-field">CGF</th>
+      <th class="th-field">Regime SRF</th>
+      <th class="th-field">Regime SEFAZ</th>      
+</tr>
+</thead>
+<% @customers_report.each do |customer| %>
+<tr>
+
+  <td>    
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.id_emp %></label>    
+  </td>
+
+  <td>    
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.razao %></label>    
+  </td>
+
+  <td>
+    <% if customer.cnpj.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.cnpj %></label>
+    <% end %>
+  </td>
+
+  <td>
+    <% if customer.cgf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.cgf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.srf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.srf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.sefaz.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.sefaz %></label>
+    <% end %>
+  </td> 
+  
+  </tr>
+<% end %>
+</table>

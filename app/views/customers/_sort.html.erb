@@ -1,0 +1,30 @@
+<%= form_tag(report_customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+<%= hidden_field_tag(:type_search,params[:type_search]) %>
+<%= hidden_field_tag(:search,params[:search]) %>  
+<%= hidden_field_tag :active,params[:active] %>
+  <div class="input-group">
+      <%= select_tag "sort", options_for_select([
+        ['Código Cliente', 'id_emp'],
+        ['Código Grupo', 'group_id'],
+        ['Razão', 'razao'],
+        ['ISS', 'iss'],
+        ['CPF', 'cpf'],
+        ['CNPJ', 'cnpj'],
+        ['CEI', 'cei'],
+        ['CGF', 'cgf'],
+        ['Código Acesso', 'cod']],
+      selected: params[:sort]),class: "form-control fields-show-view" %>
+    </div>
+    <div class="input-group">
+      <%= select_tag "order", options_for_select([
+        ['Asc', 'asc'],
+        ['Desc', 'desc']],
+      selected: params[:order]),class: "form-control fields-show-view" %>     
+ 
+      <span class="input-group-btn">
+        <%= button_tag(type: 'submit', class: "btn btn-primary",value: 'buscar') do %>
+        <span class="glyphicon glyphicon-sort"></span>
+      </span>
+      <% end %>    
+  </div>
+<% end %>

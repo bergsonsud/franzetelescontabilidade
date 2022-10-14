@@ -1,0 +1,27 @@
+<script>
+  $(function() {
+    $('#index').maskMoney({thousands:'', decimal:'.'});
+  })
+</script>
+
+<%= form_tag report_honorarios_customers_path, :method => "get", id: "search-form", class: "navbar-form" do %>
+  <div class="input-group">
+  <%= hidden_field_tag(:active,params[:active]) %>
+  <%= hidden_field_tag(:search,params[:search]) %>
+  <%= hidden_field_tag(:type_search,params[:type_search]) %>
+  
+     <span class="input-group-btn">
+        <%= text_field_tag :index, params[:index], placeholder: "Indexador", class: "form-control fields-show-view",autocomplete: "off" %>          
+        <%= button_tag(type: 'submit', class: "btn btn-primary",value: 'buscar') do %>
+        <span class="glyphicon glyphicon-usd"></span>
+      </span>
+      <% end %>    
+  </div>
+
+    <% if params[:index].present? %>
+      <%= link_to report_honorarios_customers_path(:active => true,:search => params[:search],:type_search => params[:type_search]) do %>
+        <span class="glyphicon glyphicon-remove"></span>      
+    <% end %>
+
+  <% end %>
+<% end %>

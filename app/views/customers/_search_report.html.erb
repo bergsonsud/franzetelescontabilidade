@@ -1,0 +1,31 @@
+<%= form_tag(report_customers_path, :method => "get", id: "search-form", class: "navbar-form") do %>
+<%= hidden_field_tag(:sort,params[:sort]) %>
+<%= hidden_field_tag(:order,params[:order]) %>  
+<%= hidden_field_tag :active,params[:active] %>
+  <div class="input-group">
+      <%= select_tag "type_search", options_for_select([
+        ['Código Cliente', 'id_emp'],
+        ['Código Grupo', 'group_id'],
+        ['Razão', 'razao'],
+        ['ISS', 'iss'],
+        ['CPF', 'cpf'],
+        ['CNPJ', 'cnpj'],
+        ['CEI', 'cei'],
+        ['CGF', 'cgf'],
+        ['Código Acesso', 'cod']],
+      selected: params[:type_search]),class: "form-control fields-show-view" %>
+      <span class="input-group-btn">
+        <%= text_field_tag :search, params[:search], placeholder: "Busca", class: "form-control fields-show-view",autocomplete: "off" %>          
+        <%= button_tag(type: 'submit', class: "btn btn-primary",value: 'buscar') do %>
+        <span class="glyphicon glyphicon-search"></span>
+      </span>
+      <% end %>    
+  </div>
+
+    <% if params[:search].present? %>
+      <%= link_to report_customers_path(:active=>params[:active]) do %>
+        <span class="glyphicon glyphicon-remove"></span>      
+    <% end %>
+
+  <% end %>
+<% end %>

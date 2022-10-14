@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%=Setting.find_by_parametro("SGEMPNAM").valor%></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+   <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>    
+<!--         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script> -->
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-fluid">
+      <% if controller_name != 'sessions' && current_user.present? %>
+        <%= render 'composer/menu' %>
+      <% end %>
+      <div id="modal-holder"></div>
+      <%= render 'composer/dialog' %>
+      <%= yield %>
+      </div>
+    </div>
+   <%= render 'composer/footer' %> 
+    
+  </body>
+</html>

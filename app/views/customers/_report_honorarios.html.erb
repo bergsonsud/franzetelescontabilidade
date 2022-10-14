@@ -1,0 +1,20 @@
+<tr id="customer_<%= customer.id %>">
+	<td><label class="fields-show-view"><%= customer.id_emp %></label></td>	
+	<td><label class="fields-show-view"><%= customer.razao %></label></td>
+	<td><label class="fields-show-view"><%= customer.cpf %></label></td>	
+	<td><label class="fields-show-view"><%= customer.get_cnpj %></label></td>
+	
+	<% if current_user.admin? %>
+    	<td>	
+			<label class="fields-show-view">
+				<%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
+			</label>
+		</td>
+	<% end %>
+	<td>
+		<label class="fields-show-view">
+			<%= number_to_currency ((customer.honorarios/100) * @index ).to_f.ceil%>
+		</label>
+		</td>
+	
+</tr>

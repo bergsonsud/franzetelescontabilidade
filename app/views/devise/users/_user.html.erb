@@ -1,0 +1,30 @@
+<tr id="user_<%= user.id %>">
+	<td><label class="fields-show-view"><%= user.id %></label></td>
+	<td><label class="fields-show-view"><%= user.name %></label></td>
+	<td><label class="fields-show-view"><%= user.email %></label></td>
+	<td><label class="fields-show-view"><%= user.administrador %></label></td>
+	<td><label class="fields-show-view"><%= user.sign_in_count %></label></td>
+
+	<td>
+		<label class="fields-show-view">
+			<%= formataDataHora(user.current_sign_in_at) %> <%= "IP: "+user.current_sign_in_ip if user.current_sign_in_ip.present?%>
+		</label>
+	</td>
+
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Exibir', user, remote: true,class: "btn btn-sm btn-default" %>
+		</label>
+	</td>
+
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Editar', edit_user_path(user), remote: true, :class => 'btn btn-sm btn-primary' %>
+			</label>
+	</td>
+	<% if user.id != current_user.id %>		
+		<td>
+		<%= button_to "Excluir", user, data: { confirm: "Tem certeza?" }, method: :delete,remote: true, :class => 'btn btn-sm btn-danger' %>
+		</td>
+	<% end %>
+</tr>

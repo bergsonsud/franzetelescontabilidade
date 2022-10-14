@@ -1,0 +1,33 @@
+<table class="table table-bordered table-striped table-sm">
+<th>Descrição</th>
+<th>Conteúdo</th>
+
+<tbody>
+	<tr>		
+  <div class="row">    
+    <div class="col-md-4">
+      
+      <td><%= @observation.descricao %></td>
+    </div>
+  </div>
+  <br>
+
+ <div class="row">
+	<div class="col-md-5">    	 
+		<td><%= text_area_tag 'content', @observation.content,:rows => 10, :cols => 70 %> </td>
+	</div>
+</div>			
+	</tr>
+</tbody>
+</table>
+
+
+<h1 class='section-title'><i class='glyphicon glyphicon-user'></i> Clientes</h1>
+<% @observation.customers.each do |c| %>
+	<%=c.razao%>
+	<br>
+<% end %>		
+
+
+
+

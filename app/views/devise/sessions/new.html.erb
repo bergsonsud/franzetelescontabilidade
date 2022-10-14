@@ -1,0 +1,56 @@
+<!-- <script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script> -->
+<!-- This is a very simple parallax effect achieved by simple CSS 3 multiple backgrounds, made by http://twitter.com/msurguy -->
+
+
+
+
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Login</h3>
+			 	</div>
+			 	<br>
+			  	<div class="panel-body">
+			    	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <fieldset>
+			    	  	<div class="form-group">			    		    
+    						<%= f.email_field :email, autofocus: true,:class =>"form-control",:placeholder=>"Email" %>
+			    		</div>
+			    		<div class="form-group">
+			    			
+			    			<%= f.password_field :password, :class =>"form-control",:placeholder=>"senha",autocomplete: "off" %>
+			    		</div>
+			    		  
+
+				  <div class="actions">
+				    <%= f.submit "Login", :class =>"btn btn-lg btn-success btn-block" %>
+				  </div>
+				  <br>
+				  <%= render "devise/shared/links" %>
+
+				  	<%= content_tag(:div, flash[:alert], :id => "flash_alert",:class=>"bg-danger text-danger") if flash[:alert] != 'Você precisa fazer login ou se registrar, antes de continuar.' %>
+
+			    	</fieldset>
+			      	<% end %>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+  $(document).mousemove(function(e){
+     TweenLite.to($('body'), 
+        .5, 
+        { css: 
+            {
+                backgroundPosition: ""+ parseInt(event.pageX/8) + "px "+parseInt(event.pageY/'12')+"px, "+parseInt(event.pageX/'15')+"px "+parseInt(event.pageY/'15')+"px, "+parseInt(event.pageX/'30')+"px "+parseInt(event.pageY/'30')+"px"
+            }
+        });
+  });
+});
+</script>

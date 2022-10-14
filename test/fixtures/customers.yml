@@ -1,0 +1,53 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  razao: MyString
+  iss: MyString
+  cnpj: MyString
+  cei: MyString
+  cgf: MyString
+  cod: MyString
+  logradouro: MyString
+  numero: MyString
+  bairro: MyString
+  complemento: MyString
+  municipio: MyString
+  estado: MyString
+  telefone: MyString
+  telefone2: MyString
+  telefone3: MyString
+  celular: MyString
+  celular2: MyString
+  email: MyString
+  email2: MyString
+  contato: MyString
+  contato2: MyString
+  endereco_coleta: MyString
+  honorarios: 1.5
+  desde: 2020-12-15 00:34:04
+
+two:
+  razao: MyString
+  iss: MyString
+  cnpj: MyString
+  cei: MyString
+  cgf: MyString
+  cod: MyString
+  logradouro: MyString
+  numero: MyString
+  bairro: MyString
+  complemento: MyString
+  municipio: MyString
+  estado: MyString
+  telefone: MyString
+  telefone2: MyString
+  telefone3: MyString
+  celular: MyString
+  celular2: MyString
+  email: MyString
+  email2: MyString
+  contato: MyString
+  contato2: MyString
+  endereco_coleta: MyString
+  honorarios: 1.5
+  desde: 2020-12-15 00:34:04

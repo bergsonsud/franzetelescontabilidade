@@ -1,0 +1,15 @@
+<%= form_for(@group, remote: true, :html => { :role => "form" }) do |f| %>
+ <div id="error_explanation" class="bg-danger text-danger">
+</div>
+
+  <div class="row">    
+    <div class="col-md-4">
+      <label class="field">Nome</label>
+      <%= f.text_field :name,:class => "form-control input-md",:maxlength => 30 %>  
+    </div>
+  </div>
+  <br>
+<div class="form-group">
+  <%= f.submit  @group.new_record? ? "Criar" : "Atualizar", :class => "btn btn-primary" %>
+</div>
+<% end %>

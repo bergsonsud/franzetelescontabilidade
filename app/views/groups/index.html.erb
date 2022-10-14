@@ -1,0 +1,30 @@
+<div class="container">
+
+  <h1 class="section">Grupos</h1>
+<div class="row no-more-tables">
+  <div class="col-sm-2  navbar-form ">
+    <%= link_to "Novo grupo", new_group_path, remote: true, class: "btn btn-success fields-show-button" %>
+  </div>
+  
+
+  <div class="col-sm-2 navbar-form pull-right">
+      
+  </div>
+</div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>      
+      <th>Nº Clientes</th>
+      <th>Ação</th>      
+    </tr>
+  </thead>
+
+    <tbody id="groups">
+      <%= render @groups %>
+    </tbody>  
+</table>
+
+<br>
+

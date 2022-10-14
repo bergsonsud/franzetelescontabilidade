@@ -1,0 +1,20 @@
+{
+  "name": "franze-sg-cli",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.2.0",
+    "@rails/actioncable": "^7.0.4",
+    "@rails/activestorage": "^7.0.4",
+    "@rails/ujs": "^7.0.4",
+    "@rails/webpacker": "5.4.3",
+    "bootstrap": "^5.2.2",
+    "expose-loader": "^4.0.0",
+    "jquery": "^3.6.1",
+    "popper.js": "^1.16.1",
+    "turbolinks": "^5.2.0"
+  },
+  "version": "0.1.0",
+  "devDependencies": {
+    "webpack-dev-server": "^4.11.1"
+  }
+}

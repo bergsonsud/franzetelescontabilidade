@@ -1,0 +1,357 @@
+<script>
+  $(function() {
+    $('#customer_honorarios').maskMoney();
+  }); 
+</script>
+
+<%= form_for(@customer, remote: true, :html => { :role => "form" }) do |f| %>
+<div id="error_explanation" class="bg-danger text-danger">
+</div>
+
+<h2 class="section">Dados</h2>
+
+<div class="row">
+  <div class="col-md-3">
+      <label class="field">Código Cliente</label>
+      <%= f.text_field :id_emp,:class => "form-control input-md", required: true , :maxlength => 150, size: 150, onkeypress: "return event.charCode != 32"%>      
+    </div>
+
+    <div class="col-md-3">
+      <label class="field">Status Cliente</label>
+      <%= f.number_field :star,:class => "form-control input-md", required: true , :max => 5, size: 150%>
+    </div>
+</div>
+  <br>
+<div class="row">
+    <div class="col-md-9">
+      <label class="field">Razão Social</label>
+      <%= f.text_field :razao,:class => "form-control input-md",  :maxlength => 150, size: 150%>
+    </div>
+    <div class="col-md-3">
+      <label class="field">Cliente desde</label>
+      <% if @customer.new_record? %>
+      <%= text_field 'customer',:desde,:value => Time.now.strftime("%d/%m/%Y"),:class => "form-control input-md" %>
+      <% elsif @customer.desde.present? %>
+      <%= text_field 'customer',:desde,:value => @customer.desde.strftime("%d/%m/%Y"),:class => "form-control input-md"  %>
+      <% else @customer.desde.present? %>
+      <%= text_field 'customer',:desde,:class => "form-control input-md" %>
+      <% end %>
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-6">
+    <label class="field">Logradouro</label>
+    <%= f.text_field :logradouro,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>
+  <div class="col-md-2">
+    <label class="field">Número</label>
+    <%= f.text_field :numero,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-4">
+    <label class="field">Bairro</label>
+    <%= f.text_field :bairro,:class => "form-control input-md",:maxlength => 30 %>  
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-7">
+    <label class="field">Município</label>
+    <%= f.text_field :municipio,:class => "form-control input-md",:maxlength => 30 %>  
+  </div>
+  <div class="col-md-2">
+    <label class="field gray">Estado </label>
+    <%= f.select(:estado, options_for_select([
+        ['', ''],
+        ['AC', 'AC'],
+        ['AL', 'AL'],
+        ['AP', 'AP'],
+        ['AM', 'AM'],
+        ['BA', 'BA'],
+        ['CE', 'CE'],
+        ['DF', 'DF'],
+        ['ES', 'ES'],
+        ['GO', 'GO'],
+        ['MA', 'MA'],
+        ['MT', 'MT'],
+        ['MS', 'MS'],
+        ['MG', 'MG'],
+        ['PA', 'PA'],
+        ['PB', 'PB'],
+        ['PR', 'PR'],
+        ['PE', 'PE'],
+        ['PI', 'PI'],
+        ['RJ', 'RJ'],
+        ['RN', 'RN'],
+        ['RS', 'RS'],
+        ['RO', 'RO'],
+        ['RR', 'RR'],
+        ['SC', 'SC'],
+        ['SP', 'SP'],
+        ['SE', 'SE'],
+        ['TO', 'TO']],
+      selected: @customer.estado),{},{:class => "form-control fields-show-view"}) %>
+  </div>
+  <div class="col-md-3">
+    <label class="field">CEP</label>
+    <%= f.text_field :cep,:class => "form-control input-md",:maxlength => 15 %>  
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-12">
+    <label class="field">Complemento</label>
+    <%= f.text_field :complemento,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>
+</div>
+<br>
+
+<h2 class="section">Contatos</h2>
+
+
+<div class="row"> 
+  <div class="col-md-2">
+    <label class="field">Telefone</label>
+    <%= f.text_field :telefone,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-2">
+   <label class="field">Telefone 2</label>
+    <%= f.text_field :telefone2,:class => "form-control input-md",:maxlength => 9 %>  
+  </div>
+  <div class="col-md-2">
+    <label class="field">Telefone 3</label>
+    <%= f.text_field :telefone3,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+  <div class="col-md-2">
+    <label class="field">Celular</label>
+    <%= f.text_field :celular,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+  <div class="col-md-2">
+    <label class="field">Celular 2</label>
+    <%= f.text_field :celular2,:class => "form-control input-md",:maxlength => 9 %>
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-4">
+    <label class="field">Contato</label>
+    <%= f.text_field :contato,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>
+  <div class="col-md-4">
+    <label class="field">Contato 2</label>
+    <%= f.text_field :contato2,:class => "form-control input-md",:maxlength => 32 %>  
+  </div>
+</div>
+<br>
+<div class="row"> 
+  <div class="col-md-6">
+    <label class="field">Email</label>
+    <%= f.text_field :email,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>  
+  <div class="col-md-6">  
+    <label class="field">Email 2</label>
+    <%= f.text_field :email2,:class => "form-control input-md",:maxlength => 150 %>  
+  </div>
+</div>
+
+<br>
+
+<h2 class="section">Dados empresariais</h2>
+
+<div class="row">
+  <div class="col-md-3 field">
+    <label class="field">Optante 13º Salário</label>     
+      <%= f.check_box :decimo3 %> 
+  </div>
+  
+  <div class="col-md-3">
+    <label class="field">Grupo</label>     
+      <%= f.collection_select(:group_id,Group.order(:name), :id, :name, {:prompt=>''}, {:class=>'form-control input-md'})%>    
+  </div>  
+
+  <div class="col-md-3">
+    <label class="field">CPF</label>     
+      <%= f.text_field :cpf,:class => "form-control input-md",:maxlength => 11 %>    
+  </div>   
+
+    <div class="col-md-3">
+    <label class="field">e-CPF</label>     
+      <%= f.text_field :e_cpf,:class => "form-control input-md"%>    
+  </div>   
+</div>
+<br>
+
+<div class="row"> 
+  <div class="col-md-3">
+    <label class="field">CNPJ</label>
+    <%= f.text_field :cnpj,:class => "form-control input-md",:maxlength => 14 %>  
+  </div>
+
+  <div class="col-md-3">
+    <label class="field">e-CNPJ</label>
+    <%= f.text_field :e_cnpj,:class => "form-control input-md"%>  
+  </div>
+
+  <div class="col-md-3">
+    <label class="field">CGF</label>
+    <%= f.text_field :cgf,:class => "form-control input-md",:maxlength => 14 %>
+  </div>
+
+  <div class="col-md-3">
+    <label class="field">CEI</label>
+    <%= f.text_field :cei,:class => "form-control input-md",:maxlength => 12 %>
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-3">
+    <label class="field">ISS</label>
+    <%= f.text_field :iss,:class => "form-control input-md",:maxlength => 14 %>  
+  </div>
+  <div class="col-md-5">
+    <label class="field">Senha ISS</label>
+    <%= f.text_field :senha_iss,:class => "form-control input-md",:maxlength => 200 %>  
+  </div>
+  <div class="col-md-4">
+    <label class="field">Orgão</label>
+    <%= f.text_field :orgao,:class => "form-control input-md",:maxlength => 200 %>  
+  </div>  
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <label class="field">Regime SRF</label>
+    <%= f.text_field :srf,:class => "form-control input-md",:maxlength => 200 %>  
+  </div>
+
+  <div class="col-md-6">
+    <label class="field">Regime SEFAZ</label>
+    <%= f.text_field :sefaz,:class => "form-control input-md",:maxlength => 200 %>  
+  </div>
+</div>
+<br>
+
+<div class="row">
+  <div class="col-md-6">
+    <label class="field">Código acesso</label>
+    <%= f.text_field :cod,:class => "form-control input-md",:maxlength => 30 %>
+  </div>
+
+  <div class="col-md-2">
+    <label class="field">Dia cobrança</label>
+    <%= f.number_field :dia_cobranca,:class => "form-control input-md",:maxlength => 2, :min => 1, :max => 31 %>
+  </div>
+
+  <div class="col-md-2">
+    <label class="field">% Honorários</label>
+    <%= f.text_field :honorarios,:value => number_with_precision(@customer.honorarios, precision: 2),:class => "form-control input-md",:maxlength => 30 %>
+  </div>
+</div>
+<br>
+<div class="row">
+  <div class="col-md-12">
+    <label class="field">Endereço de coleta</label>
+    <%= f.text_field :endereco_coleta,:class => "form-control input-md",:maxlength => 200 %>
+  </div>  
+</div>
+<br>
+
+<h2 class="section">Quadro societário</h2>
+
+
+<table class="table table-hover table-responsive table-sm">
+<thead>
+  <tr>
+    <th width="15%"><label class="field">Função</label></th>
+    <th width="60%"><label class="field">Nome</label></th>
+    <th width="15%"><label class="field">CPF</label></th>
+    <th width="10%"><label class="field">Incluir no contrato?</label></th>  
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>Sócio Gerente</td>
+    <td><%= f.text_field :gerente,:class => "form-control input-sm",:maxlength => 200 %></td>
+    <td><%= f.text_field :gerente_cpf,:class => "form-control input-sm",:maxlength => 11 %></td>
+    <td><%= f.check_box :gerente_c %> </td>    
+  </tr>
+  <tr>
+    <td>Sócio Cotista</td>
+    <td><%= f.text_field :cotista,:class => "form-control input-sm",:maxlength => 200 %></td>
+    <td><%= f.text_field :cotista_cpf,:class => "form-control input-sm",:maxlength => 11 %></td>
+    <td><%= f.check_box :cotista_c %> </td>    
+  </tr>
+  <tr>
+    <td>Titular de empresa</td>
+    <td><%= f.text_field :titular,:class => "form-control input-sm",:maxlength => 200 %></td>
+    <td><%= f.text_field :titular_cpf,:class => "form-control input-sm",:maxlength => 11 %></td>
+    <td><%= f.check_box :titular_c %> </td>    
+  </tr>
+  <tr>
+    <td>Titular de empresa 2</td>
+    <td><%= f.text_field :titular2,:class => "form-control input-sm",:maxlength => 200 %></td>
+    <td><%= f.text_field :titular2_cpf,:class => "form-control input-sm",:maxlength => 11 %></td>
+    <td><%= f.check_box :titular2_c %> </td>    
+  </tr>
+</tbody>
+</table>
+
+
+<h2 class="section">Areas contratadas</h2>
+
+
+<table class="table table-hover table-responsive table-sm">
+<thead>
+  <tr>
+    <th width="15%"><label class="field">Area</label></th>    
+    <th width="10%"><label class="field">Incluir no contrato?</label></th>  
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>AREA FISCAL</td>    
+    <td><%= f.check_box :area_fiscal %> </td>    
+  </tr>
+  <tr>
+    <td>AREA DO IMPOSTO DE RENDA PESSOA JURÍDICA</td>    
+    <td><%= f.check_box :area_imp_renda_pj %> </td>    
+  </tr>
+  <tr>
+    <td>AREA TRABALHISTA E PREVIDENCIÁRIA</td>    
+    <td><%= f.check_box :area_trabalhista_previdenciaria %> </td>    
+  </tr>
+  <tr>
+    <td>AREA CONTABIL</td>    
+    <td><%= f.check_box :area_contabil %> </td>     
+  </tr>
+  <tr>
+    <td>LIVRO CAIXA</td>    
+    <td><%= f.check_box :area_livro_caixa %> </td>     
+  </tr>  
+</tbody>
+</table>
+
+<div class="form-group">
+  <%= f.submit  @customer.new_record? ? "Criar" : "Atualizar", :class => "btn btn-primary" %>
+</div>
+</div>
+</div>
+<% end %>
+
+
+
+        
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#customer_desde').datepicker({
+          todayBtn: "linked",
+          language: "pt-BR",
+          autoclose: true,
+          todayHighlight: true
+        });
+               
+     });
+    </script>

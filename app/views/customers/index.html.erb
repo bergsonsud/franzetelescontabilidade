@@ -1,0 +1,36 @@
+<div class="container">
+  <h1 class="section">Clientes</h1>
+<div class="row no-more-tables">
+  <div class="col-sm-2  navbar-form ">
+    <%= link_to "Novo cliente", new_customer_path, remote: true, class: "btn btn-success fields-show-button" %>
+  </div>
+  <div class="new-customer"></div>
+
+  <div class="col-sm-2 navbar-form pull-right">
+      <%= render "search" %>
+  </div>
+</div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th><label class="section"><%= sort_link @search, :id_emp, "Código" %></label></th>
+      <th><label class="section"><%= sort_link @search, :group_id, "Grupo" %></label></th>
+      <th class="col-xs-3"><label class="section"><%= sort_link @search, :razao, "Razão Social" %></label></th>
+      
+      
+      
+
+      <% if current_user.admin? %>
+        <th><label class="section">Honorarios</label></th>
+      <% end %>
+
+      <th colspan="4"><label class="section">Ação</label></th>
+    </tr>
+    </thead>
+    <tbody id="customers">
+      <%= render @customers %>
+    </tbody>
+  </table>
+
+  <%= render 'dialog' %>

@@ -1,0 +1,89 @@
+	
+
+<%= form_for '',:html => {:target=>'new_section_frame'}, :url => contract_customers_path(format: :pdf), :method => :post do |f| %>
+
+  <div class="row">
+	<div class="col-md-7">    
+		 <label class="field">Areas</label>	 
+		<%= check_box_tag(:todos) %> Todos
+		<br><br>
+		<%= check_box_tag(:a1) %> AREA FISCAL
+		<br>
+		<%= check_box_tag(:a2) %> AREA DO IMPOSTO DE RENDA PESSOA JURÍDICA
+		<br>
+		<%= check_box_tag(:a3) %> AREA TRABALHISTA E PREVIDENCIÁRIA
+		<br>
+		<%= check_box_tag(:a4) %> AREA CONTABIL
+		<br>
+		<%= check_box_tag(:a5) %> LIVRO CAIXA
+		
+		<br><br>
+
+
+
+  <div class="row">
+	<div class="col-md-7">    
+
+	<label class="field">Imprimir observações</label>
+
+		<%= radio_button_tag("obs", "Sim",checked = true, options = {} ) %> Sim	 
+		<%= radio_button_tag("obs", "Não", ) %> Não 			
+	</div>
+</div><br>
+<div class="row">
+	<div class="col-md-4">
+	<label class="field">Vigência contrato</label>	 			
+	<%= text_field_tag 'data',Time.now.strftime("%d/%m/%Y"),:class => "form-control input-md" %>
+</div>
+</div>		
+  <div class="row">
+	<div class="col-md-7"><br>    
+		 <label class="field">Dia pagamento</label>	 			
+			<%= number_field_tag :dia,:class => "form-control input-md col-md-2",:maxlength => 2, :min => 1, :max => 31 %>
+	</div>
+</div>
+<br>		
+	<label class="field">Filtro clientes</label>
+
+		<%= radio_button_tag("tipo", "Todos",checked = true, options = {} ) %> Todos	 
+		<%= radio_button_tag("tipo", "Grupo", ) %> Grupo 	
+		<%= radio_button_tag("tipo", "Individual", ) %>	Individual	
+		<%= radio_button_tag("tipo", "Individual_id", ) %>	Individual por Código Cliente	
+	</div>
+</div>
+<br>
+
+<br>
+
+
+
+ <div id="groups"></div>
+
+ <div id="one"></div><br>
+ <div id="one_id"></div><br>
+
+ <div class="row">
+	<div class="col-md-4">    
+	 <label class="field">Ordenar</label>
+	<%= radio_button_tag("ordem", "id_emp",checked = true, options = {} ) %> Código Cliente
+	<%= radio_button_tag("ordem", "razao", ) %> Razão Social 		
+	</div>
+</div>
+<br>
+ 
+  <div class="actions">
+    <%= f.submit "Criar", :class=>"btn btn-success",data: { disable_with: false } %>
+  </div>
+<% end %>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+          $('#data').datepicker({
+          todayBtn: "linked",
+          language: "pt-BR",
+          autoclose: true,
+          todayHighlight: true
+        });
+               
+     });
+    </script>

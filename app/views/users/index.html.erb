@@ -1,0 +1,33 @@
+ <%= link_to "Novo usuários", new_user_path, remote: true, class: "btn btn-success fields-show-button" %>
+
+<div class="container">
+
+  <h1 class="section">Usuários</h1>
+<div class="row no-more-tables">
+  <div class="col-sm-2  navbar-form ">
+
+  </div>
+  <div class="new-customer"></div>
+
+  <div class="col-sm-2 navbar-form pull-right">
+      
+  </div>
+</div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th><label class="section">Cód. Usuário</label></th>     
+      <th><label class="section">Nome</label></th>  
+      <th><label class="section">Email</label></th> 
+      <th><label class="section">Admin</label></th>       
+      <th><label class="section">Contador Login</label></th>  
+      <th><label class="section">Login atual</label></th>      
+      <th colspan="3"><label class="section">Ação</label></th>
+    </tr>
+    </thead>
+    <tbody id="users">
+    <%= render @users %>
+    </tbody>
+  </table>
+
+  <%= render 'dialog' %>

@@ -1,0 +1,45 @@
+
+
+<%= form_for '',:html => {:target=>'new_section_frame'}, :url => receipt_customers_path(format: :pdf), :method => :post do |f| %>
+
+  <div class="row">
+	<div class="col-md-7">    
+		 <label class="field">Filtro</label>	 
+		<%= check_box_tag(:decimo13, checked = false ) %> 13º Salário
+		<br>
+		<%= radio_button_tag("tipo", "Todos",checked = true, options = {} ) %> Todos	 
+		<%= radio_button_tag("tipo", "Grupo", ) %> Grupo 	
+		<%= radio_button_tag("tipo", "Individual", ) %>	Individual	
+		<%= radio_button_tag("tipo", "Individual_id", ) %>	Individual por Código Cliente	
+	</div>
+</div>
+<br>
+
+ <div class="row">
+	<div class="col-md-4">    
+	 <label class="field">Ordenar</label>
+	<%= radio_button_tag("ordem", "id_emp",checked = true, options = {} ) %> Código Cliente
+	<%= radio_button_tag("ordem", "razao", ) %> Razão Social 		
+	</div>
+</div>
+<br>
+
+ <div id="groups"></div>
+
+ <div id="one"></div><br>
+ <div id="one_id"></div><br>
+
+
+ <div class="row">
+	<div class="col-md-5">    
+	 <label class="field">Descrição</label>
+	 <%= text_area_tag(:texto,nil,:rows => 10, :cols => 70)%>	
+	</div>
+</div>
+<br>
+ 
+  <div class="actions">
+    <%= f.submit "Criar", :class=>"btn btn-success",data: { disable_with: false } %>
+  </div>
+<% end %>
+

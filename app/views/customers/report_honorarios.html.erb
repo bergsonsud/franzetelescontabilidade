@@ -1,0 +1,51 @@
+<div class="container">
+
+  <h1 class="section">Relatório Honorários</h1>
+<div class="row no-more-tables">
+
+
+  <div class="new-customer"></div>
+
+  <div class="row">
+  <div class="col-sm-4">
+    <%= render 'change_hono' %>
+  </div>
+  
+    <div class="col-sm-2 navbar-form pull-right">    
+        <%= render "search_honorarios" %>
+    </div>
+  </div>
+</div>
+<div class="pull-right">
+<%= link_to print_report_honorarios_customers_path(:format => :pdf,:total => @total,:index => @index,:active => params[:active],:decimo3 => params[:decimo3],:type_search => params[:type_search],:search => params[:search],:sort => params[:sort],:order => params[:order],),:alt => 'Gerar Relatório em PDF', :target => '_blank' do %>
+  <i class="fas fa-file-pdf fa-lg"></i>
+<% end %>
+</div>
+<strong>Indexador <%= number_to_currency @index %></strong><br>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th><label class="section"><%= sort_link @search, :id, "Código" %></label></th>      
+      <th class="col-xs-3"><label class="section"><%= sort_link @search, :razao, "Razão Social" %></label></th>
+      <th><label class="section"><%= sort_link @search, :cpf, "CPF" %></label></th>
+      <th><label class="section"><%= sort_link @search, :cnpj, "CNPJ" %></label></th>
+      <th><label class="section"><%= sort_link @search, :honorarios, "% Honorários" %></label></th>
+      <th><label class="section">Valor</label></th>
+
+    </tr>
+    </thead>
+    <tbody id="customers">
+      <%= render "customers" %>
+    </tbody>
+    <tbody>
+      <th colspan="6"></th>      
+    </tbody>
+    <tbody>
+      <th colspan="5">TOTAL</th>      
+      <th><strong><%= number_to_currency @total %></strong></th>      
+    </tbody>
+  </table>
+
+  <%= render 'dialog' %>
+

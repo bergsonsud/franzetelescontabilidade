@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped table-sm">
+<th>Código Cliente</th>
+<th>Razão Social</th>
+<th>CNPJ</th>
+<th>Honorários</th>
+
+<tbody>
+<% @group.customers.each do |c| %>
+	<tr>
+		<td><%= c.id_emp %></td>
+		<td><%= c.razao %></td>
+		<td><%= c.get_cnpj %></td>
+		<td><%= number_to_percentage(c.honorarios, precision: 3) if c.honorarios.present? %></td>
+	</tr>
+<% end %>
+</tbody>
+</table>
+		

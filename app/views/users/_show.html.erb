@@ -1,0 +1,65 @@
+<%= @user.email %>
+<br><br>
+<table class="table table-bordered table-striped table-sm">
+
+  <th class="th-field">Criado em</th>	
+  <th class="th-field">Última atualização em</th>	
+	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= formataDataHora(@user.created_at) %>
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">				
+				<%= formataDataHora(@user.updated_at) %>
+			</label>
+		</td>
+	</tr>	
+  
+  <th class="th-field">Admin</th>	
+  <th class="th-field">Contador Login</th>	
+	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= @user.administrador %>
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">				
+				<%= @user.sign_in_count %>
+			</label>
+		</td>
+	</tr>
+	
+	<th class="th-field">Login atual</th>
+	<th class="th-field">IP Atual</th>
+	<tr>
+		<td>
+			<label class="fields-show-view">
+              <%= formataDataHora(@user.current_sign_in_at) %> 
+			</label>
+		</td>
+		<td>
+			<label class="fields-show-view">
+				<%= @user.current_sign_in_ip %>
+			</label>
+		</td>
+	</tr>
+	<th class="th-field">Último login</th>
+	<th class="th-field">Último IP</th>
+	<tr>
+		<td>
+			<label class="fields-show-view">
+				<%= formataDataHora(@user.last_sign_in_at) %>
+			</label>
+		</td>			
+		<td>
+			<label class="fields-show-view">
+				 <%= @user.last_sign_in_ip %>
+			</label>
+		</td>			
+	</tr>
+</table>
+
+

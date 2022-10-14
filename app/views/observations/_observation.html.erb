@@ -1,0 +1,23 @@
+<tr id="observation_<%= observation.id %>">		
+	<td><label class="fields-show-view"><%= observation.descricao %></label></td>	
+	<td>
+		<label class="fields-show-button">
+			<%= link_to 'Exibir', observation, remote: true,class: "btn btn-sm btn-default" %>
+		</label>	
+	</td>
+
+
+	<% if current_user.admin? %>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Editar', edit_observation_path(observation), remote: true, :class => 'btn btn-sm btn-primary' %>
+				</label>
+		</td>
+		<td>
+			<label class="fields-show-button">
+				<%= link_to 'Excluir', observation, remote: true, :method => :delete, data: {confirm: "Excluir cliente: #{observation.descricao} ?"}, :class => 'btn btn-sm btn-danger' %>
+				</label>
+		</td>
+	<% end %>
+
+</tr>

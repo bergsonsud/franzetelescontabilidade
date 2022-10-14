@@ -1,0 +1,9 @@
+$('#dialog h3').html("<i class='glyphicon glyphicon-user'></i> <span class='section-title'><%=@user.name %></span>");
+
+$('.modal-body').html('<%= j render("show") %>');
+
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+  })

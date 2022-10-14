@@ -1,0 +1,165 @@
+<!-- Static navbar -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+      <span class="sr-only">Toggle navigation </span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+      
+      <%= link_to Setting.find_by_parametro("SGEMPNAM").valor,root_path, :class=>"navbar-brand" %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      
+    
+    <% if !current_user.admin? %>
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to "Clientes",customers_path(:active => true) %>           
+          </li>
+        </ul>
+    <% else %>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clientes
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+             <li>
+                <%= link_to "Cliente ativos",customers_path(:active => true) %>
+              </li>
+             <li>
+                <%= link_to "Cliente inativos",customers_path(:active => false) %>
+             </li>
+            <li>
+                <%= link_to "Grupos",groups_path(:active => true) %>
+             </li>
+
+            <li>
+                <%= link_to "Observações",observations_path(:active => true) %>
+             </li>
+
+          </ul>
+        </li>
+      </ul>
+    <% end %> 
+
+           
+
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relatórios
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li>
+             <%= link_to "Relatório Clientes com 13º",report_customers_path(:active => true, :decimo3 => true) %>
+            </li>                       
+            <li>
+              <%= link_to "Relatório Clientes Ativos",report_customers_path(:active => true) %>
+            </li>
+          <% if current_user.admin? %>
+              <li>
+                <%= link_to "Relatório Clientes inativos",report_customers_path(:active => false) %>
+              </li>
+
+              <li>
+              <%= link_to "Relatório Honorários",report_honorarios_customers_path(:active => true) %>
+            </li>
+              <li>
+              <%= link_to "Relatório Honorários 13º Salário",report_honorarios_customers_path(:active => true, :decimo3 => true) %>
+            </li>            
+          <%end%>
+          <li>
+              <%= link_to print_customers_path(:format => :pdf,:active => true), :target => '_blank' do %>
+                  Relatório Clientes - Resumido <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+           </li>
+
+          <li>
+              <%= link_to print_customers_path(:format => :pdf,:active => true, :decimo3 => true), :target => '_blank' do %>
+                  Relatório Clientes - 13º Salário <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+           </li>  
+
+        <li>
+              <%= link_to print_codigo_customers_path(:format => :pdf,:active => true), :target => '_blank' do %>
+                  Relatório Código Acesso <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+           </li>
+          </ul>
+        </li>
+      </ul>  
+
+    <% if current_user.admin? %>
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Recibos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">             
+            <li>
+              <%= link_to prepare_receipt_customers_path, remote: true do %>
+                  Gerar Recibos <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+            </li>
+          </ul>
+        </li>
+      </ul>
+        
+    <% end %>  
+
+
+ 
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contratos
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">    
+             <% if current_user.admin? %>         
+            <li>
+              <%= link_to prepare_contract_customers_path, remote: true do %>
+                  Gerar Contrato por parametros <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+            </li>
+          <% end %>      
+
+            <li>
+              <%= link_to prepare_contract_cadastro_customers_path, remote: true do %>
+                  Gerar Contrato por cadastro <i class="fas fa-file-pdf fa-lg"></i>
+                <% end %>
+            </li>  
+
+          </ul>
+        </li>
+      </ul>
+        
+    
+
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user"></i>
+            <%=current_user.name%>
+          <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+          <% if current_user.admin? %>
+            <li class="dropdown-header">Configurações sistema</li>
+             <li> <%= link_to "Usuários", users_path %></li>
+             <li><%= link_to "Configurações",settings_path %></li>
+             <li role="separator" class="divider"></li>
+
+
+
+          <% end %>
+          
+          <li class="dropdown-header">Conta</li>
+            <li> <%= render 'devise/menu/registration_items' %></li>
+            <li><%= render 'devise/menu/login_items' %></li>
+          </ul>
+        </li>
+      </ul>
+
+      </div><!--/.nav-collapse -->
+      </div><!--/.container-fluid -->
+    </nav>

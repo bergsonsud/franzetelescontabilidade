@@ -1,0 +1,10 @@
+$('#dialog h3').html("<span class='section-title'>Observação: <%= @observation.descricao %></span>");
+
+$('.modal-body').html('<%= j render("show") %>');
+
+$('#dialog').modal("show");
+
+$('#dialog').on('shown.bs.modal', function () {
+	  $('.first_input').focus()
+  })
+

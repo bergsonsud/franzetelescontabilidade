@@ -1,0 +1,111 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<center><h1 class="section">Relatório Código Acesso</h1></center>
+
+  <style type="text/css">
+   table { page-break-inside:auto }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+
+</style>
+
+<table class="table table-bordered table-striped">
+<thead>
+  <tr>
+    <th width="6.3%">#</th>
+    <th width="30%">Razão Social</th>
+    <th width="6.3%">CPF</th>
+    <th width="6.3%">e-CPF</th>
+    <th width="6.3%">CNPJ</th>
+    <th width="6.3%">e-CNPJ</th>
+    <th width="6.3%">CGF</th>
+    <th width="6.3%">ISS</th>
+    <th width="6.3%">Senha ISS</th>
+    <th width="6.3%">Regime SRF</th>
+    <th width="6.3%">Regime SEFAZ</th>
+    <th width="6.3%">Código Acesso</th>
+  </tr>
+</thead>
+<% @customers_report.each do |customer| %>
+<tr>
+
+  <td>    
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.id_emp %></label>    
+  </td>
+
+  <td>        
+    <label class="fields-show-view small"><%= customer.razao %></label>    
+  </td>
+
+  <td>
+    <% if customer.cpf.present?%>    
+    <label class="fields-show-view small"><%= customer.cpf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.e_cpf.present?%>    
+    <label class="fields-show-view small"><%= customer.e_cpf %></label>
+    <% end %>
+  </td>   
+
+  <td>
+    <% if customer.cnpj.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.cnpj %></label>
+    <% end %>
+  </td>
+
+  <td>
+    <% if customer.e_cnpj.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.e_cnpj %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.cgf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.cgf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.iss.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.iss %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.senha_iss.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.senha_iss %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.srf.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.srf %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.sefaz.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.sefaz %></label>
+    <% end %>
+  </td> 
+
+  <td>
+    <% if customer.cod.present?%>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view small"><%= customer.cod %></label>
+    <% end %>
+  </td>
+
+  </tr>
+<% end %>
+</table>

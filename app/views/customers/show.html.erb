@@ -1,0 +1,181 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
+
+<% x = 0 %>
+
+<% @customers_report.each do |customer| %>
+<% x = x+1 %>
+<% if x == 1 %>
+<br>
+<% end %>
+  <h1 class="section">Relatório de Clientes</h1>
+<table class="table table-bordered table-striped border-dark" style="width: 1000px;" >
+
+<th colspan="8">
+<table class="report">
+  
+  <tr>
+    <td colspan="8">
+      <label class="section big"><%= customer.razao %></label>
+    </td>
+  </tr>
+
+  <tr>
+    <% if customer.id_emp.present? %>
+      <td>
+        <h5 class="section">
+          <label class="fields-show-view">Código: <%= customer.id_emp %></label>
+        </h5>
+      </td>
+    <% end %> 
+    
+      <td>
+        <h5 class="section">
+          <label class="fields-show-view">Grupo: <%= customer.group.name %></label>
+        </h5>
+      </td>
+  
+    <% if customer.desde.present? %>
+      <td>
+        <h5 class="section">
+          <label class="fields-show-view">Cliente desde: <%= customer.since %> (<%= customer.howtime %>)</label>
+        </h5>
+      </td>
+    <% end %>
+
+   
+  </tr>
+</table>
+ 
+</th>
+<tr></tr>
+
+
+
+<th class="th-field" colspan="5">Endereço</th>
+<tr>
+  <td colspan="5">
+    <% if customer.logradouro.present? or customer.municipio.present? %>
+    <i class='glyphicon glyphicon-home'></i>
+    <label class="fields-show-view"><%= customer.address %> <%= customer.get_cep%></label>
+    <% end %>
+  </td>
+</tr>
+
+<th class="th-field" colspan="3">Contatos</th>
+<th class="th-field" colspan="2">Email</th>
+
+<tr>
+<td colspan="3">
+    <% if customer.celular.present? or customer.celular2.present?%>
+      <i class='glyphicon glyphicon-phone'></i>
+      <label class="fields-show-view"><%= customer.mobilephone_numbers %></label>
+    <% end %>
+
+    <% if customer.telefone.present? or customer.telefone2.present? or customer.telefone3.present? %>
+      <i class='glyphicon glyphicon-phone-alt'></i>
+      <label class="fields-show-view"><%= customer.phone_numbers %></label>
+      <label class="fields-show-view"><%= customer.contatos %></label>
+      <br>
+    <% end %>
+  </td>
+  <td colspan="2">
+    <% if customer.email.present? or customer.email2.present? %>
+      <i class='glyphicon glyphicon-envelope'></i>
+      <label class="fields-show-view"><%= customer.mail %></label>
+    <% end %>
+  </td>  
+
+</tr>
+
+<th class="th-field" colspan="3">Endereço Coleta</th> 
+<th class="th-field" colspan="2">Código acesso</th>
+
+<tr>
+  <td colspan="3">
+    <% if customer.endereco_coleta.present? %>
+    <label class="fields-show-view"><%= customer.endereco_coleta %></label>
+    <% end %>
+  </td>
+  <td colspan="5">
+      <label class="fields-show-view">
+        <%= customer.cod if customer.cod.present? %>
+      </label>
+    </td>
+  </tr>
+</tr>
+
+<th class="th-field">CPF</th>
+<th class="th-field">CNPJ</th>
+<th class="th-field">ISS</th>
+<th class="th-field">CGF</th>
+<th class="th-field">CEI</th>
+  <tr>
+    <td>
+      <label class="fields-show-view">        
+        <%= customer.cpf if customer.cpf.present? %>
+      </label>
+    </td>
+    <td>
+      <label class="fields-show-view">
+        <%= customer.get_cnpj%>
+      </label>
+    </td>
+    <td>
+      <label class="fields-show-view">
+        <%= customer.iss if customer.iss.present? %>
+      </label>
+    </td>
+    <td>
+      <label class="fields-show-view">
+        <%= customer.cgf if customer.cgf.present? %>
+      </label>
+    </td>     
+    <td>
+      <label class="fields-show-view">
+        <%= customer.cei if customer.cei.present? %>
+      </label>
+    </td>     
+  </tr>
+</table>
+
+<hr class="style-three">
+</hr>
+
+  <% if x == 3 %>
+  <% x = 0 %>
+    <P CLASS="breakhere">
+  <% end %>
+<% end %>
+
+
+<style type="text/css">
+  div.page {
+ /* width: 1300px;
+  height: 980px;*/
+  page-break-before: always;
+}
+
+p.breakhere {page-break-before: always}
+
+
+.report td {
+   padding-left: 15px ;
+}
+
+hr.style-three {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+    width: 1000px;
+}
+
+.table-bordered td, .table-bordered th{
+    border-color: black !important;
+}
+</style>

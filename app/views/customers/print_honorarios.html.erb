@@ -1,0 +1,71 @@
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+<% if params[:decimo3].present? %>
+  <center><h1 class="section">Relatório 13º Ano <%= Time.now.utc.strftime("%Y") %></h1></center>
+<% else %>
+  <center><h1 class="section">Relatório de Honorários</h1></center>
+<% end %>
+
+  <style type="text/css">
+   table { page-break-inside:auto }
+   tr    { page-break-inside:avoid; page-break-after:auto }
+
+</style>
+
+<table class="table table-bordered table-striped">
+
+  <thead>
+    <tr>
+      <th><label class="section">Código</th>      
+      <th><label class="section">Razão Social</th>
+      <th><label class="section">CPF</th>
+      <th><label class="section">CNPJ</label></th>      
+      <th><label class="section">% Honorários</label></th>
+      <th><label class="section">Valor</label></th>
+    </tr>
+    </thead>
+<tbody id="customers">
+<% x = 0 %>
+<% @report_honorarios.each do |customer| %>
+
+<tr id="customer_<%= customer.id %>">
+  <td><label class="fields-show-view-report"><%= customer.id_emp %></label></td>  
+  <td><label class="fields-show-view-report"><%= customer.razao %></label></td>
+  <td><label class="fields-show-view-report"><%= customer.cpf %></label></td>  
+  <td><label class="fields-show-view-report"><%= customer.cnpj %></label></td>
+  
+  
+      <td>  
+      <label class="fields-show-view-report">
+        <%= number_to_percentage(customer.honorarios, precision: 3) if customer.honorarios.present? %>
+      </label>
+    </td>
+ 
+  
+    
+    <td>
+    <label class="fields-show-view-report">      
+      <%= number_to_currency (customer.calc_honorarios(params[:index].to_f))%>
+    </label>
+    </td>
+    
+    
+  
+</tr>
+
+
+<% end %>
+    </tbody>
+    <tbody>
+      <th colspan="6"></th>      
+    </tbody>
+    <tbody>
+      <th colspan="5">TOTAL</th>      
+      <th><strong><%= number_to_currency (params[:total]) %></strong></th>      
+    </tbody>
+  </table>
+
+    
+

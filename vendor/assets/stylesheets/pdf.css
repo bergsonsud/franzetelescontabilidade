@@ -1,0 +1,23 @@
+div.page {
+ /* width: 1300px;
+  height: 980px;*/
+  page-break-before: always;
+}
+
+p.breakhere {page-break-before: always}
+
+
+.report td {
+   padding-left: 15px ;
+}
+
+hr.style-three {
+    border: 0;
+    border-bottom: 1px dashed #ccc;
+    background: #999;
+    width: 1000px;
+}
+
+.table-bordered td, .table-bordered th{
+    border-color: black !important;
+}

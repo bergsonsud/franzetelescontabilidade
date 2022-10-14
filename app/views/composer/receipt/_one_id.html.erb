@@ -1,0 +1,13 @@
+<%= hidden_field_tag(:individual_id)%>	
+<label class="field">Código cliente</label>
+<%= text_field_tag :id_emp %>
+<br>
+<label class="field">Definir valor recibo</label>
+<%= text_field_tag :total %>
+
+<script>
+  $(function() {
+    $('#total').maskMoney({thousands:'', decimal:'.'});
+  })
+
+</script>

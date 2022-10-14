@@ -1,0 +1,22 @@
+<div class="container">
+  <h1 class="section">Observações</h1>
+<div class="row no-more-tables">
+  <div class="col-sm-2  navbar-form ">
+    <%= link_to "Nova observação", new_observation_path, remote: true, class: "btn btn-success fields-show-button" %>
+  </div>
+  <div class="new-observation"></div>
+
+  </div>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th><label class="section"><%= sort_link @search, :description, "Descrição" %></label></th>    
+      <th colspan="4"><label class="section">Ação</label></th>
+    </tr>
+    </thead>
+    <tbody id="observations">
+      <%= render @observations %>
+    </tbody>
+  </table>
+  <%= render 'dialog' %>
