@@ -171,7 +171,6 @@ GEM
     jquery-ui-rails (6.0.1)
       railties (>= 3.2.16)
     kgio (2.11.4)
-    libv8 (3.16.14.19-x86_64-linux)
     listen (3.3.3)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -261,7 +260,6 @@ GEM
     rb-fsevent (0.10.4)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    ref (2.0.0)
     regexp_parser (1.8.2)
     responders (3.0.1)
       actionpack (>= 5.0)
@@ -296,9 +294,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    therubyracer (0.12.3)
-      libv8 (~> 3.16.14.15)
-      ref
     thor (1.0.1)
     tilt (2.0.10)
     time_diff (0.3.0)
@@ -385,7 +380,6 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
-  therubyracer
   time_diff
   turbolinks (~> 5)
   tzinfo-data

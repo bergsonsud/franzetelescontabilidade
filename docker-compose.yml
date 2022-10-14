@@ -6,9 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile    
     ports: 
-      - "3000:3000"
+      - "3004:3000"
     volumes:
       - .:/app
+      - gem_cache:/usr/local/bundle/gems
     env_file: .env
     environment:
       RAILS_ENV: development
@@ -16,7 +17,12 @@ services:
         - networks        
 volumes:
   app:  
-  
+  gem_cache:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /root/dockers/cache 
 networks:
   networks:
     driver: bridge  
