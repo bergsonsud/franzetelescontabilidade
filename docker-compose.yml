@@ -13,9 +13,7 @@ services:
       - .:/app
     env_file: .env
     environment:
-      RAILS_ENV: development
-      DB_USER: postgres
-      DB_PASSWORD: changeme
+      RAILS_ENV: development      
       DB_HOST: postgres
 
   postgres:    
